@@ -1,60 +1,122 @@
-/* ===========================================
-   GLOBAL RESET & FONT
-=============================================*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* ===========================================
+   1. GLOBAL RESET & FONT
+=============================================*/
 * {
     font-family: "Poppins", sans-serif !important;
+    box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
 }
 
 html, body {
     background-color: #f5f7fa !important;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
 }
 
-
 /* ===========================================
-   REMOVE SIDEBAR COMPLETELY
+   2. REMOVE STREAMLIT UI ELEMENTS
 =============================================*/
-.css-1d391kg, .css-12oz5g7 {
+/* Hides sidebar, header, footer, and main menu */
+.css-1d391kg, .css-12oz5g7 { 
     display: none !important;
 }
 
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
-
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
+header { visibility: hidden; }
 
 /* ===========================================
-   PAGE WRAPPER
+   3. PAGE WRAPPER & CONTAINER
 =============================================*/
 .container-box {
-    max-width: 480px;
-    margin: 60px auto;
+    max-width: 480px; /* Ideal width for a mobile-focused app/form */
+    margin: 60px auto; /* Centers the container vertically and horizontally */
     background: #ffffff;
-    padding: 35px 40px;
+    padding: 0 40px 35px 40px; /* Padding for the inner content, zero top padding to align with header-bar */
     border-radius: 18px;
     box-shadow: 0px 8px 25px rgba(0,0,0,0.08);
 }
 
+/* ===========================================
+   4. HEADER BAR (Matching Zodopt Image)
+=============================================*/
+.header-bar {
+    /* Main Gradient Bar */
+    background: linear-gradient(90deg, #5c62ec 0%, #4338ca 100%); 
+    color: white;
+    padding: 20px 25px;
+    /* Uses the container's border-radius for the top corners */
+    border-radius: 18px 18px 0 0; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Negative margin to pull the header bar up and cover the container's top edge */
+    margin: -0 -40px 25px -40px; 
+}
+
+.header-bar h1 {
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    margin: 0;
+}
+
+.header-logo-text {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+}
+
+/* Specific styling for the colored "opt" in zodopt */
+.header-logo-text .red { color: #ff4d4f; }
+.header-logo-text .green { color: #34c759; }
+.header-logo-text .blue { color: #007bff; }
+
 
 /* ===========================================
-   LOGO CENTERED
+   5. FEATURE CARDS (Visit Plan, Conference Booking)
 =============================================*/
-.logo-container {
-    width: 100%;
-    text-align: center;
+.feature-cards-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
     margin-bottom: 25px;
 }
 
-.logo-container img {
-    width: 160px;
+.feature-card {
+    flex: 1; 
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.05);
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature-card-content {
+    padding: 25px 20px 0;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style the button inside the card to look like a footer */
+.feature-card .stButton button {
+    width: 100%;
+    /* Override global button radius to get square top corners */
+    border-radius: 0 0 12px 12px !important; 
+    margin-top: auto; 
+    padding: 15px 15px !important; /* Slightly larger padding */
+    font-size: 15px !important;
 }
 
 
 /* ===========================================
-   INPUT BOX STYLING
+   6. INPUTS & LABELS
 =============================================*/
 input[type="text"], 
 input[type="password"], 
@@ -71,20 +133,18 @@ select {
     padding: 12px 15px !important;
 }
 
-
-/* ===========================================
-   LABELS
-=============================================*/
 .stTextInput label, 
 .stSelectbox label, 
 .stRadio label,
 .stNumberInput label {
     font-weight: 500 !important;
+    color: #333; /* Darker label color */
+    margin-bottom: 5px;
+    display: block; /* Ensures label takes full width */
 }
 
-
 /* ===========================================
-   BUTTONS (Primary)
+   7. BUTTONS (Primary)
 =============================================*/
 .stButton>button {
     background: linear-gradient(135deg, #007bff, #0056d6) !important;
@@ -95,17 +155,19 @@ select {
     border: none !important;
     font-size: 16px !important;
     font-weight: 600 !important;
-    transition: 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .stButton>button:hover {
     transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 86, 214, 0.4);
     background: linear-gradient(135deg, #0056d6, #003ba3) !important;
 }
 
 
 /* ===========================================
-   SECONDARY BUTTON
+   8. SECONDARY BUTTON
 =============================================*/
 .secondary-btn>button {
     background: #f0f2f5 !important;
@@ -123,7 +185,41 @@ select {
 
 
 /* ===========================================
-   LINKS
+   9. FORMS & UTILITIES
+=============================================*/
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Added gap for better spacing */
+}
+
+.form-row .form-col {
+    width: 50%; /* Changed from 48% to 50% for cleaner math */
+}
+
+/* ===========================================
+   10. MESSAGES & ALERTS
+=============================================*/
+.success-box {
+    padding: 15px;
+    background: #e7f9ed;
+    border-left: 5px solid #34c759;
+    color: #2d7a39;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.error-box {
+    padding: 15px;
+    background: #fdecea;
+    border-left: 5px solid #ff4d4f;
+    color: #a32025;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* ===========================================
+   11. MISCELLANEOUS (Links, Radio, Checkbox, etc.)
 =============================================*/
 a {
     color: #0056d6 !important;
@@ -135,73 +231,6 @@ a:hover {
     text-decoration: underline !important;
 }
 
-
-/* ===========================================
-   FORMS USING TWO-COLUMN LAYOUT
-=============================================*/
-.form-row {
-    display: flex;
-    justify-content: space-between;
-}
-
-.form-row .form-col {
-    width: 48%;
-}
-
-
-/* ===========================================
-   RADIO & CHECKBOXES
-=============================================*/
 .stRadio div, .stCheckbox div {
     font-size: 15px !important;
-}
-
-
-/* ===========================================
-   PHOTO CAPTURE FRAME
-=============================================*/
-.photo-frame {
-    width: 230px;
-    height: 230px;
-    border: 3px dashed #999;
-    border-radius: 15px;
-    margin: 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-/* ===========================================
-   SIGNATURE PAD
-=============================================*/
-.signature-pad {
-    border: 2px solid #ccd2da;
-    border-radius: 12px;
-    width: 100%;
-    height: 220px;
-}
-
-
-/* ===========================================
-   SUCCESS MESSAGE
-=============================================*/
-.success-box {
-    padding: 15px;
-    background: #e7f9ed;
-    border-left: 5px solid #34c759;
-    color: #2d7a39;
-    border-radius: 8px;
-}
-
-
-/* ===========================================
-   ERROR MESSAGE
-=============================================*/
-.error-box {
-    padding: 15px;
-    background: #fdecea;
-    border-left: 5px solid #ff4d4f;
-    color: #a32025;
-    border-radius: 8px;
 }
