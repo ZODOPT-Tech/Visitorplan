@@ -1,4 +1,5 @@
 import streamlit as st
+from utils.helpers import nav # Import the navigation helper
 
 def app():
     """Renders the home page with the header and two feature cards."""
@@ -64,8 +65,7 @@ def app():
 
             # Button is created using st.button which is styled by the CSS
             if st.button("Visit Plan", key="visit_plan_btn"):
-                st.session_state.page = "visitplan_login"
-                st.rerun()
+                nav("visitplan_login") # Use the helper function for navigation
                 
         st.markdown('</div>', unsafe_allow_html=True) # close feature-card
 
@@ -99,8 +99,7 @@ def app():
             )
             
             if st.button("Conference Booking", key="conference_booking_btn"):
-                st.session_state.page = "conference_booking"
-                st.rerun()
+                nav("conference_booking") # Use the helper function for navigation
 
         st.markdown('</div>', unsafe_allow_html=True) # close feature-card
 
