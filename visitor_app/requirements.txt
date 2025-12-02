@@ -1,0 +1,8 @@
+streamlit
+mysql-connector-python
+boto3
+bcrypt
+qrcode
+Pillow
+streamlit-drawable-canvas
+python-dotenv

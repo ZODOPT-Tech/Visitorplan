@@ -1,0 +1,207 @@
+/* ===========================================
+   GLOBAL RESET & FONT
+=============================================*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    font-family: "Poppins", sans-serif !important;
+}
+
+html, body {
+    background-color: #f5f7fa !important;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ===========================================
+   REMOVE SIDEBAR COMPLETELY
+=============================================*/
+.css-1d391kg, .css-12oz5g7 {
+    display: none !important;
+}
+
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+
+/* ===========================================
+   PAGE WRAPPER
+=============================================*/
+.container-box {
+    max-width: 480px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 35px 40px;
+    border-radius: 18px;
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.08);
+}
+
+
+/* ===========================================
+   LOGO CENTERED
+=============================================*/
+.logo-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo-container img {
+    width: 160px;
+}
+
+
+/* ===========================================
+   INPUT BOX STYLING
+=============================================*/
+input[type="text"], 
+input[type="password"], 
+input[type="email"], 
+textarea, 
+select {
+    border-radius: 10px !important;
+    border: 1px solid #d3d8e0 !important;
+    padding: 10px 14px !important;
+    background: #ffffff !important;
+}
+
+.stTextInput>div>div>input {
+    padding: 12px 15px !important;
+}
+
+
+/* ===========================================
+   LABELS
+=============================================*/
+.stTextInput label, 
+.stSelectbox label, 
+.stRadio label,
+.stNumberInput label {
+    font-weight: 500 !important;
+}
+
+
+/* ===========================================
+   BUTTONS (Primary)
+=============================================*/
+.stButton>button {
+    background: linear-gradient(135deg, #007bff, #0056d6) !important;
+    color: white !important;
+    padding: 12px 15px !important;
+    border-radius: 10px !important;
+    width: 100% !important;
+    border: none !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    transition: 0.3s ease-in-out;
+}
+
+.stButton>button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #0056d6, #003ba3) !important;
+}
+
+
+/* ===========================================
+   SECONDARY BUTTON
+=============================================*/
+.secondary-btn>button {
+    background: #f0f2f5 !important;
+    color: #333 !important;
+    padding: 10px 15px !important;
+    border-radius: 8px !important;
+    width: 100% !important;
+    border: 1px solid #ccd2da !important;
+    font-weight: 500 !important;
+}
+
+.secondary-btn>button:hover {
+    background: #e3e6eb !important;
+}
+
+
+/* ===========================================
+   LINKS
+=============================================*/
+a {
+    color: #0056d6 !important;
+    text-decoration: none !important;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline !important;
+}
+
+
+/* ===========================================
+   FORMS USING TWO-COLUMN LAYOUT
+=============================================*/
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-row .form-col {
+    width: 48%;
+}
+
+
+/* ===========================================
+   RADIO & CHECKBOXES
+=============================================*/
+.stRadio div, .stCheckbox div {
+    font-size: 15px !important;
+}
+
+
+/* ===========================================
+   PHOTO CAPTURE FRAME
+=============================================*/
+.photo-frame {
+    width: 230px;
+    height: 230px;
+    border: 3px dashed #999;
+    border-radius: 15px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ===========================================
+   SIGNATURE PAD
+=============================================*/
+.signature-pad {
+    border: 2px solid #ccd2da;
+    border-radius: 12px;
+    width: 100%;
+    height: 220px;
+}
+
+
+/* ===========================================
+   SUCCESS MESSAGE
+=============================================*/
+.success-box {
+    padding: 15px;
+    background: #e7f9ed;
+    border-left: 5px solid #34c759;
+    color: #2d7a39;
+    border-radius: 8px;
+}
+
+
+/* ===========================================
+   ERROR MESSAGE
+=============================================*/
+.error-box {
+    padding: 15px;
+    background: #fdecea;
+    border-left: 5px solid #ff4d4f;
+    color: #a32025;
+    border-radius: 8px;
+}
