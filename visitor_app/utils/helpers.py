@@ -11,9 +11,9 @@ def init_nav():
 
 def nav(page_name: str):
     st.session_state.page = page_name
-    st.experimental_rerun()
+    st.rerun()
 
 def logout():
     st.session_state.clear()
     init_nav()
-    st.experimental_rerun()
+    st.rerun()
