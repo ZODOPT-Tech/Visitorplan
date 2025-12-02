@@ -16,16 +16,42 @@ html, body {
 }
 
 /* ===========================================
-   2. REMOVE STREAMLIT UI ELEMENTS
+   2. REMOVE STREAMLIT UI ELEMENTS (CRITICAL)
 =============================================*/
-/* Hides sidebar, header, footer, and main menu */
-.css-1d391kg, .css-12oz5g7 { 
+/* Hides the default Streamlit main menu button (three dots) */
+#MainMenu { 
+    visibility: hidden; 
+}
+
+/* Hides the Streamlit footer ('Made with Streamlit') */
+footer { 
+    visibility: hidden; 
+}
+
+/* Hides the Streamlit header bar (if present) */
+header { 
+    visibility: hidden; 
+}
+
+/* !!! CRITICAL: HIDES THE STREAMLIT MULTI-PAGE APP NAVIGATION SIDEBAR !!! 
+   This is the most reliable selector for hiding the entire sidebar component.
+*/
+[data-testid="stSidebar"] {
     display: none !important;
 }
 
-#MainMenu { visibility: hidden; }
-footer { visibility: hidden; }
-header { visibility: hidden; }
+/* Reduces the top and bottom padding of the main content block for a tighter layout */
+[data-testid="stAppViewBlockContainer"] {
+    padding-top: 1rem !important; 
+    padding-bottom: 1rem !important;
+}
+
+/* General legacy selectors (kept for compatibility) */
+.css-1d391kg, .css-12oz5g7 {
+    display: none !important; 
+}
+
+/* --- */
 
 /* ===========================================
    3. PAGE WRAPPER & CONTAINER
@@ -34,7 +60,7 @@ header { visibility: hidden; }
     max-width: 480px; /* Ideal width for a mobile-focused app/form */
     margin: 60px auto; /* Centers the container vertically and horizontally */
     background: #ffffff;
-    padding: 0 40px 35px 40px; /* Padding for the inner content, zero top padding to align with header-bar */
+    padding: 0 40px 35px 40px; /* Padding for the inner content */
     border-radius: 18px;
     box-shadow: 0px 8px 25px rgba(0,0,0,0.08);
 }
@@ -43,35 +69,33 @@ header { visibility: hidden; }
    4. HEADER BAR (Matching Zodopt Image)
 =============================================*/
 .header-bar {
-    /* Main Gradient Bar */
+    /* Main Gradient Bar: Purple to Dark Purple */
     background: linear-gradient(90deg, #5c62ec 0%, #4338ca 100%); 
     color: white;
     padding: 20px 25px;
-    /* Uses the container's border-radius for the top corners */
     border-radius: 18px 18px 0 0; 
     display: flex;
     justify-content: space-between;
     align-items: center;
     /* Negative margin to pull the header bar up and cover the container's top edge */
-    margin: -0 -40px 25px -40px; 
+    margin: 0 -40px 25px -40px; 
 }
 
+.header-logo-text {
+    display: flex; /* For aligning logo image/icon */
+    align-items: center;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+}
+
+/* Styles for any element rendered inside the header bar */
 .header-bar h1 {
     font-size: 22px !important;
     font-weight: 600 !important;
     margin: 0;
 }
 
-.header-logo-text {
-    font-size: 22px !important;
-    font-weight: 700 !important;
-}
-
-/* Specific styling for the colored "opt" in zodopt */
-.header-logo-text .red { color: #ff4d4f; }
-.header-logo-text .green { color: #34c759; }
-.header-logo-text .blue { color: #007bff; }
-
+/* --- */
 
 /* ===========================================
    5. FEATURE CARDS (Visit Plan, Conference Booking)
@@ -102,49 +126,62 @@ header { visibility: hidden; }
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 /* Style the button inside the card to look like a footer */
 .feature-card .stButton button {
     width: 100%;
-    /* Override global button radius to get square top corners */
+    /* Override button radius for square top corners */
     border-radius: 0 0 12px 12px !important; 
     margin-top: auto; 
-    padding: 15px 15px !important; /* Slightly larger padding */
+    padding: 15px 15px !important; 
     font-size: 15px !important;
+    /* Secondary button styling for card footers */
+    background: #f0f2f5 !important; 
+    color: #333 !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: background 0.2s ease;
 }
 
+.feature-card .stButton button:hover {
+    background: #e3e6eb !important;
+    transform: none; 
+    box-shadow: none;
+}
+
+/* --- */
 
 /* ===========================================
    6. INPUTS & LABELS
 =============================================*/
-input[type="text"], 
-input[type="password"], 
-input[type="email"], 
-textarea, 
-select {
+/* Target all common input types */
+.stTextInput input, 
+.stNumberInput input, 
+.stSelectbox select, 
+.stTextArea textarea {
     border-radius: 10px !important;
     border: 1px solid #d3d8e0 !important;
-    padding: 10px 14px !important;
+    padding: 12px 15px !important; 
     background: #ffffff !important;
 }
 
-.stTextInput>div>div>input {
-    padding: 12px 15px !important;
-}
-
+/* Labels */
 .stTextInput label, 
 .stSelectbox label, 
 .stRadio label,
 .stNumberInput label {
     font-weight: 500 !important;
-    color: #333; /* Darker label color */
+    color: #333; 
     margin-bottom: 5px;
-    display: block; /* Ensures label takes full width */
+    display: block; 
 }
 
+/* --- */
+
 /* ===========================================
-   7. BUTTONS (Primary)
+   7. PRIMARY BUTTONS (Default Streamlit Button)
 =============================================*/
 .stButton>button {
     background: linear-gradient(135deg, #007bff, #0056d6) !important;
@@ -165,11 +202,12 @@ select {
     background: linear-gradient(135deg, #0056d6, #003ba3) !important;
 }
 
+/* --- */
 
 /* ===========================================
-   8. SECONDARY BUTTON
+   8. SECONDARY BUTTON (To be used via st.markdown('<div class="secondary-btn">...</div>') )
 =============================================*/
-.secondary-btn>button {
+.secondary-btn button {
     background: #f0f2f5 !important;
     color: #333 !important;
     padding: 10px 15px !important;
@@ -177,12 +215,14 @@ select {
     width: 100% !important;
     border: 1px solid #ccd2da !important;
     font-weight: 500 !important;
+    box-shadow: none !important;
 }
 
-.secondary-btn>button:hover {
+.secondary-btn button:hover {
     background: #e3e6eb !important;
 }
 
+/* --- */
 
 /* ===========================================
    9. FORMS & UTILITIES
@@ -190,33 +230,38 @@ select {
 .form-row {
     display: flex;
     justify-content: space-between;
-    gap: 20px; /* Added gap for better spacing */
+    gap: 20px; 
 }
 
 .form-row .form-col {
-    width: 50%; /* Changed from 48% to 50% for cleaner math */
+    width: 50%; 
 }
+
+/* --- */
 
 /* ===========================================
-   10. MESSAGES & ALERTS
+   10. STREAMLIT ALERTS (Overrides default blue/green/red boxes)
 =============================================*/
-.success-box {
-    padding: 15px;
-    background: #e7f9ed;
-    border-left: 5px solid #34c759;
-    color: #2d7a39;
-    border-radius: 8px;
-    margin-bottom: 15px;
+
+/* Success Block */
+[data-testid="stNotification"] [data-testid="stSuccessBlock"] {
+    background: #e7f9ed !important;
+    border-left: 5px solid #34c759 !important;
+    color: #2d7a39 !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
 }
 
-.error-box {
-    padding: 15px;
-    background: #fdecea;
-    border-left: 5px solid #ff4d4f;
-    color: #a32025;
-    border-radius: 8px;
-    margin-bottom: 15px;
+/* Error Block */
+[data-testid="stNotification"] [data-testid="stErrorBlock"] {
+    background: #fdecea !important;
+    border-left: 5px solid #ff4d4f !important;
+    color: #a32025 !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
 }
+
+/* --- */
 
 /* ===========================================
    11. MISCELLANEOUS (Links, Radio, Checkbox, etc.)
